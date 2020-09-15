@@ -3,6 +3,7 @@
 """
 from django.shortcuts import render, get_object_or_404
 from .models import Category, Product
+from cart.forms import CartAddProductFrom
 
 
 def product_list(request, category_slug=None):
@@ -38,8 +39,11 @@ def product_detail(request, id, slug):
                                 slug=slug,
                                 available=True)
 
+    cart_product_form = CartAddProductFrom()
+
     context = {
-        'product': product
+        'product': product,
+        'cart_product_form': cart_product_form,
     }
 
     return render(request,
