@@ -1,12 +1,13 @@
 from django import forms
 
+
 PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 21)]
 
 
-class CartAddProductFrom(forms.Form):
-    quantity = forms.TypedMultipleChoiceField(
+class CartAddProductForm(forms.Form):
+    quantity = forms.TypedChoiceField(
         choices=PRODUCT_QUANTITY_CHOICES,
         coerce=int)
-    override = forms.BooleanField(initial=False,
-                                  required=False,
+    override = forms.BooleanField(required=False,
+                                  initial=False,
                                   widget=forms.HiddenInput)
